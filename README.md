@@ -1,1 +1,2 @@
 ----Any side notes and AI usage----
+- used AI to create a virtual environment (took the terminal instruction code)
