@@ -1,3 +1,4 @@
 ----Any side notes and AI usage----
 - used AI to create a virtual environment (took the terminal instruction code)
 - the site originally crashed, used AI to help the site get back on track
+- used AI to help edit the look of the website, edited the AI code so its not fully AI
