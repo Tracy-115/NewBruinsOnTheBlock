@@ -1,7 +1,67 @@
+import { useState, useRef } from "react";
+import shell from "../assets/cad-shell.png";
+
 export default function Instrument() {
-  return (
-    <div>
-      <h1>Instrument</h1>
+
+    const [showInfo, setShowInfo] = useState(false);
+    const infoRef = useRef(null);
+
+    return (
+    <section className="instrument">
+
+      <h1 className="instrument-title">
+        Instrument
+      </h1>
+
+      <p className="instrument-description">
+        The shell was designed to house all the technological components on the inside and the keyboard on the outside. Click on the CAD image for more info!
+
+ 
+      </p>
+
+    <button
+    className="image-button"
+    onClick={() => {
+    const opening = !showInfo;
+    setShowInfo(opening);
+
+    if (opening) {
+        setTimeout(() => {
+            infoRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }, 10);
+    }
+}}
+>
+    <img
+        src={shell}
+        alt="CAD Shell"
+        className="instrument-image"
+    />
+</button>
+
+{showInfo && (
+    <div
+    ref={infoRef}
+    className="info-card"
+>
+        <h2>CAD Shell Design</h2>
+
+        <p>
+            This CAD shell was modeled in SolidWorks and serves as the enclosure
+            for our instrument.
+        </p>
+
+        <ul>
+            <li>Designed specifically for the Raspberry Pi Pico 2</li>
+            <li>Specific compartments to fit the keyboard</li>
+            <li>Mounting points for electronics</li>
+            <li>Designed on the CAD software Solid Works</li>
+        </ul>
     </div>
+)}
+    </section>
   );
 }

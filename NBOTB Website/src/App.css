@@ -1,7 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Source+Code+Pro:wght@400;600&display=swap');
+
 .app {
   padding: 20px;
 }
 
 body {
   margin: 0;
+}
+
+
+
+.title {
+    font-family: "Marcellus", serif;
+    font-size: 72px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-family: "Nokora", monospace;
+    font-size: 16px;
+    color: #888680;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.6;
+}
+
+
+.hero-button:hover{
+    background:#e6d279;
+}
+
+.logo {
+    font-family: "Marcellus", serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+
+nav ul {
+    display: flex;
+    gap: 34px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: rgb(247, 234, 116);
+    text-decoration: none;
+    font-family: "Source Code Pro", monospace;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #6495fe;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+button {
+    margin-top: 30px;
+
+    padding: 18px 36px;
+
+    border: none;
+    border-radius: 2000px;
+
+    background: #d5d0e500;
+    color: rgba(0, 0, 0, 0);
+
+    font-family: "Source Code Pro", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #b6b2c2;
+    transform: translateY(-3px);
+}
+
+.hero p{
+    max-width:700px;
+
+    margin-top:20px;
+
+    line-height:1.8;
+
+    color:#a8a8a8;
+
+    font-size:20px;
+}
+
+body{
+    background:
+    radial-gradient(circle at bottom,#272747,#181820 45%,#111116 100%);
+}
+
+.title{
+    text-shadow:
+        0 0 20px rgba(229, 208, 134, 0.08);
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    max-width:1000px;
+    margin:0 auto;
+
+    padding:12px 60px;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 30px;
+    padding-bottom: 60px;
+}
+
+.subtitle{
+    margin-top:18px;
+    margin-bottom:42px;
+}
+
+.title{
+    font-family:"Marcellus",serif;
+    font-size:64px;
+    font-weight:400;
+    line-height:1.1;
+}
+
+button:hover{
+    background:#42486a;
+}
+button{
+    box-shadow:
+        0 0 25px rgba(196, 187, 234, 0.15);
+}
+
+body{
+    min-height:100vh;
+}
+
+.hero-image{
+    width:500px;
+    height:auto;
+    margin-bottom:20px;
+}
+
+.hero{
+    padding-top: 10px;
+    padding-bottom: 60px;
+}
+.hero-image{
+    width: 600px;
+}
+
+.hero-image{
+    transition: transform .2s ease;
+}
+
+.hero-image:hover{
+    transform: scale(1.30);
+}
+
+.hero-button{
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+
+  margin-top: 35px;
+  padding: 14px 28px;
+
+  font-family: "Source Code Pro", monospace;
+  font-size: 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #222;
+  color: rgb(144, 184, 228);
+
+  cursor: pointer;
+  transition: 0.3s;
+
+  box-shadow: 0 0 25px rgba(194, 186, 224, 0.25);
+}
+
+.hero-button:hover{
+  background: #e6d279;
+  color: #222;
+  transform: translateY(-3px);
+}
+
+.instrument {
+  text-align: center;
+  padding: 40px 20px 80px;
+}
+
+.instrument-image {
+  width: 600px;
+  max-width: 90%;
+  height: auto;
+
+  margin-top: 100px;
+}
+
+.instrument-image{
+    width: 500px;
+    max-width: 80%;
+    height: auto;
+
+    margin-top: 50px;
+}
+
+.instrument{
+    text-align: center;
+    padding: 40px 20px 100px;
+}
+
+.instrument-title{
+    font-family: "Marcellus", serif;
+    font-size: 64px;
+    margin-bottom: 25px;
+}
+
+.instrument-description{
+    max-width: 700px;
+    margin: 0 auto;
+
+    font-family: "Source Code Pro", monospace;
+    color: #a8a8a8;
+
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+.instrument-image{
+    width:280px;
+    transition:0.35s ease;
+    filter: drop-shadow(0 20px 35px rgba(85, 82, 82, 0.127));
+}
+
+.instrument-image:hover{
+    transform:translateY(-8px) scale(1.03);
+}
+
+
+
+
+
+.info-card{
+    width: 450px;
+    margin: 45px auto;
+
+    padding: 28px 40px;
+
+    background: rgba(255, 255, 255, 0.097);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.092);
+
+    border-radius: 400px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25);
+
+    transition: .35s ease;
+}
+
+.info-card h2{
+    font-family: "Marcellus", serif;
+
+    font-size: 34px;
+    font-weight: 400;
+
+    color: #ffffff;
+    margin-bottom: 18px;
+
+    letter-spacing: .5px;
+}
+.info-card p{
+
+    font-family: "Source Code Pro", monospace;
+
+    font-size: 15px;
+
+    color: #b9bbc5;
+
+    line-height: 1.4;
+    max-width: 470px;
+
+    margin: 0 auto 20px;
+}
+.info-card ul{
+
+    width: fit-content;
+
+    margin: auto;
+
+    text-align: left;
+
+    color: #adadad;
+
+    line-height: 2;
+
+    font-family: "Source Code Pro", monospace;
+
+    font-size: 15px;
+}
+.info-card:hover{
+
+    transform: translateY(-5px);
+
+    border-color: rgba(255, 255, 255, 0);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.241);
+}
+.info-card{
+    animation: fadeUp .45s ease;
+}
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:10;
+        transform:translateY(0);
+    }
+
 }

@@ -13,7 +13,7 @@ function App() {
       <div className="app">
 
         <nav className="navbar">
-          <h2>New Bruins On The Block</h2>
+          <h2 className="logo">New Bruins On The Block</h2>
 
           <ul>
             <li><Link to="/">Home</Link></li>
