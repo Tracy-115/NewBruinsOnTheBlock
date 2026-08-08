@@ -1,11 +1,10 @@
 export default function Songs() {
   return (
     <section className="hero">
-      <h1>New Bruins On The Block</h1>
+      <h1>The song were presenting is...</h1>
 
       <p>
-        The most perfect synthesizer custom built with a Raspberry Pi Pico 2,
-        React, and modern electronics.
+        This song!
       </p>
 
       <button>Explore Our Instrument</button>
