@@ -110,9 +110,11 @@ code {
   background: var(--code-bg);
 }
 
-.team-member{
-  border: 3px solid #FFB300;
-  background-color: white;
+.team-member-card-background{
+  background-image: url(./assets/vaporwave_bg.jpg);
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #4a406d;
   border-radius: 10px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -120,12 +122,31 @@ code {
   max-width: 450px;
   display: inline-block;
   vertical-align: top;
-  height: 530px;
+  height: 550px;
 }
 
 .team-member-image {
   max-width: 60%;
   height: auto;
   border-radius: 5%;
+  margin-top: 10px;
   margin-bottom: 10px;
+  border: 3px solid #4a406d;
+}
+
+.team-member-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.team-member-bio{
+  display: inline;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  box-decoration-break: clone; 
+  -webkit-box-decoration-break: clone;
+  font-size: 18px;
+  color: rgb(241, 240, 240);
+
 }
