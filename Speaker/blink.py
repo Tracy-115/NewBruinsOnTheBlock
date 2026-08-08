@@ -1,13 +1,17 @@
-from machine import ADC
+from machine import UART, Pin
 import time
 
-force1 = ADC(27)
-force2 = ADC(28)
+uart = UART(
+    0,
+    baudrate=9600,
+    rx=Pin(17)
+)
 
 while True:
-    print(
-        "Force 1:", force1.read_u16(),
-        "Force 2:", force2.read_u16()
-    )
+    if uart.any():
+        data = uart.readline()
 
-    time.sleep(0.2)
+        if data:
+            print(data)
+
+    time.sleep(0.01)

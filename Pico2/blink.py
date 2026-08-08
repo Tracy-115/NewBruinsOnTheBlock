@@ -1,14 +1,12 @@
-from machine import Pin
-from utime import sleep
+from machine import UART, Pin
+import time
 
-pin = Pin("LED", Pin.OUT)
+uart = UART(
+    0,
+    baudrate=9600,
+    tx=Pin(0)
+)
 
-print("LED starts flashing...")
 while True:
-    try:
-        pin.toggle()
-        sleep(1) # sleep 1sec
-    except KeyboardInterrupt:
-        break
-pin.off()
-print("Finished.")
+    uart.write("Hello\n")
+    time.sleep(1)
