@@ -26,10 +26,6 @@ button5 = Pin(7, Pin.IN, Pin.PULL_UP)
 button6 = Pin(8, Pin.IN, Pin.PULL_UP)
 button7 = Pin(10, Pin.IN, Pin.PULL_UP)
 
-sine_switch = Pin(11, Pin.IN, Pin.PULL_UP)
-square_switch = Pin(12, Pin.IN, Pin.PULL_UP)
-saw_switch = Pin(13, Pin.IN, Pin.PULL_UP)
-
 buttons = [
     (button1, 262),
     (button2, 294),
@@ -58,23 +54,7 @@ while True:
     for i in range(400):
 
         if frequency > 0:
-
-            if sine_switch.value() == 1:
-                wave = math.sin(phase)
-
-            elif square_switch.value() == 1:
-                if phase < math.pi:
-                    wave = 1
-                else:
-                    wave = -1
-
-            elif saw_switch.value() == 1:
-                wave = (phase / math.pi) - 1
-
-            else:
-                wave = 0
-
-            value = int(volume * wave)
+            value = int(volume * math.sin(phase))
 
             phase += 2 * math.pi * frequency / sample_rate
 
