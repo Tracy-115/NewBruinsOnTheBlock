@@ -109,3 +109,23 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.team-member{
+  border: 3px solid #FFB300;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  max-width: 450px;
+  display: inline-block;
+  vertical-align: top;
+  height: 530px;
+}
+
+.team-member-image {
+  max-width: 60%;
+  height: auto;
+  border-radius: 5%;
+  margin-bottom: 10px;
+}
