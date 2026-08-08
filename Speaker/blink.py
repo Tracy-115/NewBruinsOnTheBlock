@@ -3,7 +3,7 @@ import math
 import struct
 
 sample_rate = 8000
-chunk_size = 64
+chunk_size = 128
 
 audio = I2S(
     0,
@@ -14,32 +14,24 @@ audio = I2S(
     bits=16,
     format=I2S.MONO,
     rate=sample_rate,
-    ibuf=8000
+    ibuf=12000
 )
 
 potent = ADC(26)
 
-button1 = Pin(3, Pin.IN, Pin.PULL_UP)
-button2 = Pin(4, Pin.IN, Pin.PULL_UP)
-button3 = Pin(5, Pin.IN, Pin.PULL_UP)
-button4 = Pin(6, Pin.IN, Pin.PULL_UP)
-button5 = Pin(7, Pin.IN, Pin.PULL_UP)
-button6 = Pin(8, Pin.IN, Pin.PULL_UP)
-button7 = Pin(10, Pin.IN, Pin.PULL_UP)
+buttons = [
+    Pin(3, Pin.IN, Pin.PULL_UP),
+    Pin(4, Pin.IN, Pin.PULL_UP),
+    Pin(5, Pin.IN, Pin.PULL_UP),
+    Pin(6, Pin.IN, Pin.PULL_UP),
+    Pin(7, Pin.IN, Pin.PULL_UP),
+    Pin(8, Pin.IN, Pin.PULL_UP),
+    Pin(10, Pin.IN, Pin.PULL_UP)
+]
 
 sine_switch = Pin(11, Pin.IN, Pin.PULL_UP)
 square_switch = Pin(12, Pin.IN, Pin.PULL_UP)
 saw_switch = Pin(13, Pin.IN, Pin.PULL_UP)
-
-buttons = [
-    button1,
-    button2,
-    button3,
-    button4,
-    button5,
-    button6,
-    button7
-]
 
 frequencies = [
     262,
@@ -55,10 +47,8 @@ sine_table = []
 
 for i in range(256):
     sine_table.append(
-        math.sin(2 * math.pi * i / 256)
+        int(32767 * math.sin(2 * math.pi * i / 256))
     )
-
-phases = [0] * 7
 
 steps = []
 
@@ -66,6 +56,8 @@ for frequency in frequencies:
     steps.append(
         int(frequency * 65536 / sample_rate)
     )
+
+phases = [0] * 7
 
 samples = bytearray(chunk_size * 2)
 
@@ -78,6 +70,9 @@ while True:
     for i in range(7):
         if buttons[i].value() == 0:
             active.append(i)
+
+            if len(active) == 2:
+                break
 
     if sine_switch.value() == 1:
         sound = 1
@@ -104,21 +99,31 @@ while True:
 
             elif sound == 2:
                 if position < 128:
-                    wave = 1
+                    wave = 32767
                 else:
-                    wave = -1
+                    wave = -32767
 
             else:
-                wave = (position / 128) - 1
+                wave = (position * 256) - 32768
 
             value += wave
 
             phases[i] = (phases[i] + steps[i]) & 65535
 
-        if len(active) > 0:
-            value = int(value * volume / len(active))
+        if len(active) == 1:
+            value = (value * volume) // 32767
+
+        elif len(active) == 2:
+            value = (value * volume) // 65534
+
         else:
             value = 0
+
+        if value > 32767:
+            value = 32767
+
+        elif value < -32768:
+            value = -32768
 
         struct.pack_into(
             "<h",
