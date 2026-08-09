@@ -10,8 +10,13 @@ export default function About() {
 
   return (
     <div>
-      <h1>About the Creators</h1>
-      <p>Click on the photo to learn more about the team!</p>
+      <div className="header-text">
+        <h1>About the Creators</h1>
+      </div>
+      <div className="about-text">
+        <p>Click on the photo to learn more about the team!</p>
+        <h1></h1>
+      </div>
 
       {!showIntroductions ? (
         <div className="team-photo">
