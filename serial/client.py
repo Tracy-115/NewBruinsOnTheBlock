@@ -7,7 +7,7 @@ from datetime import datetime
 # Configuration
 SERIAL_PORT = '/dev/cu.usbmodem11201' # Change to 'COM3' on Windows, '/dev/ttyUSB0' for other boards
 BAUD_RATE = 115200
-WEBSOCKET_URL = 'ws://localhost:8765'
+WEBSOCKET_URL = 'ws://192.168.0.133:8765'
 
 
 async def read_serial_and_send():

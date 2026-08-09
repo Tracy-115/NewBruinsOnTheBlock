@@ -388,3 +388,12 @@ body{
 .page-title {
   font-family: 'Marcellus', serif;
 }
+
+.backing-track {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.music-volume {
+  margin-top: 10px;
+}
