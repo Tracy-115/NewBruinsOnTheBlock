@@ -136,7 +136,7 @@ code {
   max-width: 450px;
   display: inline-block;
   vertical-align: top;
-  height: 550px;
+  height: 575px;
 }
 
 .team-member-image {
@@ -149,18 +149,21 @@ code {
 }
 
 .team-member-name {
-  font-size: 24px;
+  font-family: "Marcellus", serif;
+  font-size: 27px;
   font-weight: bold;
   color: white;
 }
 
 .team-member-bio{
+  font-family: "Source Code Pro", monospace;
+  font-size: 16px;
+  line-height: 1.5;
   display: inline;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   box-decoration-break: clone; 
   -webkit-box-decoration-break: clone;
-  font-size: 18px;
   color: rgb(241, 240, 240);
 
 }
