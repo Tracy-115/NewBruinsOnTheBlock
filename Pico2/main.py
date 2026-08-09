@@ -1,5 +1,8 @@
 import time
 
+notes = ["C", "D", "E", "F", "G", "A", "B"]
+
 while True:
-    print("HELLO")
-    time.sleep(1)
+    for note in notes:
+        print(note)
+        time.sleep(1)

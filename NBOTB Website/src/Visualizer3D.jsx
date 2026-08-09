@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { useGLTF, OrbitControls, ContactShadows } from "@react-three/drei";
 
 function InstrumentModel() {
-  const { scene } = useGLTF("/models/Assem2.glb");
+  const { scene } = useGLTF("/models/keytar.glb");
 
   scene.traverse((child) => {
     if (child.isMesh) {
@@ -14,7 +14,7 @@ function InstrumentModel() {
   return <primitive object={scene} scale={5} />;
 }
 
-useGLTF.preload("/models/Assem2.glb");
+useGLTF.preload("/models/keytar.glb");
 
 export default function Visualizer3D() {
   return (

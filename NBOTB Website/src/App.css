@@ -141,15 +141,15 @@ body{
 }
 
 .hero{
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 60px;
 }
 .hero-image{
-    width: 600px;
+    width: 450px;
 }
 
 .hero-image{
-    transition: transform .2s ease;
+    transition: transform .1s ease;
 }
 
 .hero-image:hover{
