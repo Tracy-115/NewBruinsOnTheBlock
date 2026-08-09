@@ -29,10 +29,7 @@ class SSD1306(framebuf.FrameBuffer):
         self.height = height
         self.external_vcc = external_vcc
         self.pages = self.height // 8
-
-        self.buffer = bytearray(
-            self.pages * self.width
-        )
+        self.buffer = bytearray(self.pages * self.width)
 
         super().__init__(
             self.buffer,
@@ -87,45 +84,17 @@ class SSD1306(framebuf.FrameBuffer):
         self.show()
 
     def poweroff(self):
-
-        self.write_cmd(
-            SET_DISP
-        )
+        self.write_cmd(SET_DISP)
 
     def poweron(self):
-
-        self.write_cmd(
-            SET_DISP | 0x01
-        )
+        self.write_cmd(SET_DISP | 0x01)
 
     def contrast(self, contrast):
-
-        self.write_cmd(
-            SET_CONTRAST
-        )
-
-        self.write_cmd(
-            contrast
-        )
+        self.write_cmd(SET_CONTRAST)
+        self.write_cmd(contrast)
 
     def invert(self, invert):
-
-        self.write_cmd(
-            SET_NORM_INV
-            | (invert & 1)
-        )
-
-    def rotate(self, rotate):
-
-        self.write_cmd(
-            SET_COM_OUT_DIR
-            | ((rotate & 1) << 3)
-        )
-
-        self.write_cmd(
-            SET_SEG_REMAP
-            | (rotate & 1)
-        )
+        self.write_cmd(SET_NORM_INV | (invert & 1))
 
     def show(self):
 
@@ -134,40 +103,20 @@ class SSD1306(framebuf.FrameBuffer):
 
         if self.width != 128:
 
-            col_offset = (
-                128 - self.width
-            ) // 2
+            col_offset = (128 - self.width) // 2
 
             x0 += col_offset
             x1 += col_offset
 
-        self.write_cmd(
-            SET_COL_ADDR
-        )
+        self.write_cmd(SET_COL_ADDR)
+        self.write_cmd(x0)
+        self.write_cmd(x1)
 
-        self.write_cmd(
-            x0
-        )
+        self.write_cmd(SET_PAGE_ADDR)
+        self.write_cmd(0)
+        self.write_cmd(self.pages - 1)
 
-        self.write_cmd(
-            x1
-        )
-
-        self.write_cmd(
-            SET_PAGE_ADDR
-        )
-
-        self.write_cmd(
-            0
-        )
-
-        self.write_cmd(
-            self.pages - 1
-        )
-
-        self.write_data(
-            self.buffer
-        )
+        self.write_data(self.buffer)
 
 
 class SSD1306_I2C(SSD1306):
@@ -183,13 +132,7 @@ class SSD1306_I2C(SSD1306):
 
         self.i2c = i2c
         self.addr = addr
-
         self.temp = bytearray(2)
-
-        self.write_list = [
-            b"\x40",
-            None
-        ]
 
         super().__init__(
             width,
@@ -209,9 +152,7 @@ class SSD1306_I2C(SSD1306):
 
     def write_data(self, buf):
 
-        self.write_list[1] = buf
-
-        self.i2c.writevto(
+        self.i2c.writeto(
             self.addr,
-            self.write_list
+            b"\x40" + buf
         )
