@@ -110,6 +110,20 @@ code {
   background: var(--code-bg);
 }
 
+.team-photo{
+  display: flex;
+  justify-content: center;
+  height: 450px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.team-photo:hover {
+  transform: scale(1.02);
+}
+
 .team-member-card-background{
   background-image: url(./assets/vaporwave_bg.jpg);
   background-size: cover;
