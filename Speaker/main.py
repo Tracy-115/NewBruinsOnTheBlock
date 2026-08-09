@@ -1,7 +1,6 @@
-from machine import I2S, Pin, ADC, I2C
+from machine import I2S, Pin, ADC
 import math
 import struct
-import time
 
 sample_rate = 8000
 chunk_size = 64
@@ -19,6 +18,7 @@ audio = I2S(
 )
 
 potent = ADC(26)
+joystick_x = ADC(27)
 
 buttons = [
     Pin(3, Pin.IN, Pin.PULL_UP),
@@ -30,24 +30,9 @@ buttons = [
     Pin(10, Pin.IN, Pin.PULL_UP)
 ]
 
-sine_switch = Pin(11, Pin.IN, Pin.PULL_UP)
-square_switch = Pin(12, Pin.IN, Pin.PULL_UP)
-saw_switch = Pin(13, Pin.IN, Pin.PULL_UP)
-
-i2c = I2C(
-    0,
-    sda=Pin(20),
-    scl=Pin(21),
-    freq=400000
-)
-
-MPU = 0x68
-
-i2c.writeto_mem(
-    MPU,
-    0x6B,
-    b"\x00"
-)
+vibrato_switch = Pin(11, Pin.IN, Pin.PULL_UP)
+distortion_switch = Pin(12, Pin.IN, Pin.PULL_UP)
+tremolo_switch = Pin(13, Pin.IN, Pin.PULL_UP)
 
 frequencies = [
     262,
@@ -60,86 +45,77 @@ frequencies = [
 ]
 
 phase = 0
+vibrato_phase = 0
+tremolo_phase = 0
 
-octave = 4
-tilted = False
+octave = 1
+joystick_moved = False
 
-last_imu_read = time.ticks_ms()
+last_note = -1
+envelope = 0.0
 
-
-def read_accel_y():
-
-    data = i2c.readfrom_mem(
-        MPU,
-        0x3D,
-        2
-    )
-
-    value = (data[0] << 8) | data[1]
-
-    if value > 32767:
-        value -= 65536
-
-    return value
-
+print("Octave:", octave)
 
 while True:
 
-    if time.ticks_diff(time.ticks_ms(), last_imu_read) > 100:
+    joystick_value = joystick_x.read_u16()
 
-        y = read_accel_y()
+    if not joystick_moved:
 
-        if not tilted:
+        if joystick_value > 50000:
+            octave += 1
 
-            if y > 9000:
+            if octave > 8:
+                octave = 8
 
-                octave += 1
+            joystick_moved = True
+            print("Octave:", octave)
 
-                if octave > 8:
-                    octave = 8
+        elif joystick_value < 15000:
+            octave -= 1
 
-                tilted = True
-                print("Octave:", octave)
+            if octave < 1:
+                octave = 1
 
-            elif y < -9000:
+            joystick_moved = True
+            print("Octave:", octave)
 
-                octave -= 1
+    if 25000 < joystick_value < 40000:
+        joystick_moved = False
 
-                if octave < 1:
-                    octave = 1
-
-                tilted = True
-                print("Octave:", octave)
-
-        if -5000 < y < 5000:
-            tilted = False
-
-        last_imu_read = time.ticks_ms()
-
-    volume = (potent.read_u16() * 15000) // 65535
+    volume = (
+        potent.read_u16()
+        * 22000
+    ) // 65535
 
     frequency = 0
+    note_number = -1
 
     for i in range(7):
 
         if buttons[i].value() == 0:
 
-            frequency = frequencies[i]
+            note_number = i
 
-            frequency = frequency * (
+            frequency = frequencies[i] * (
                 2 ** (octave - 4)
             )
 
             break
 
-    if square_switch.value() == 1:
-        sound = 2
+    if note_number != -1 and note_number != last_note:
 
-    elif saw_switch.value() == 1:
-        sound = 3
+        envelope = 1.0
+        phase = 0
 
-    else:
-        sound = 1
+    if note_number == -1:
+        envelope = 0
+
+    last_note = note_number
+
+    vibrato_on = vibrato_switch.value() == 1
+    distortion_on = distortion_switch.value() == 1
+    tremolo_on = tremolo_switch.value() == 1
 
     samples = bytearray()
 
@@ -147,27 +123,81 @@ while True:
 
         if frequency > 0:
 
-            if sound == 1:
+            current_frequency = frequency
 
-                wave = math.sin(phase)
+            if vibrato_on:
 
-            elif sound == 2:
+                current_frequency = (
+                    frequency
+                    + math.sin(vibrato_phase)
+                    * frequency
+                    * 0.02
+                )
 
-                if phase < math.pi:
-                    wave = 1
-                else:
-                    wave = -1
+                vibrato_phase += (
+                    2
+                    * math.pi
+                    * 5
+                    / sample_rate
+                )
 
-            else:
+                if vibrato_phase >= 2 * math.pi:
+                    vibrato_phase -= 2 * math.pi
 
-                wave = (phase / math.pi) - 1
+            wave = (
+                math.sin(phase) * 0.72
+                + math.sin(phase * 2) * 0.16
+                + math.sin(phase * 3) * 0.08
+                + math.sin(phase * 4) * 0.04
+            )
 
-            value = int(volume * wave)
+            if envelope > 0.18:
+                envelope *= 0.9996
+
+            wave *= envelope
+
+            if distortion_on:
+
+                drive = wave * 2.0
+
+                wave = drive / (
+                    1 + abs(drive)
+                )
+
+            if tremolo_on:
+
+                tremolo = (
+                    0.65
+                    + 0.35
+                    * math.sin(tremolo_phase)
+                )
+
+                wave *= tremolo
+
+                tremolo_phase += (
+                    2
+                    * math.pi
+                    * 4
+                    / sample_rate
+                )
+
+                if tremolo_phase >= 2 * math.pi:
+                    tremolo_phase -= 2 * math.pi
+
+            value = int(
+                volume * wave
+            )
+
+            if value > 32767:
+                value = 32767
+
+            elif value < -32768:
+                value = -32768
 
             phase += (
                 2
                 * math.pi
-                * frequency
+                * current_frequency
                 / sample_rate
             )
 

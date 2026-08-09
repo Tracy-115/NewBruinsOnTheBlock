@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Source+Code+Pro:wght@400;600&display=swap');
 
 .app {
@@ -10,21 +11,7 @@ body {
 
 
 
-.title {
-    font-family: "Marcellus", serif;
-    font-size: 72px;
-    font-weight: 400;
-    margin-bottom: 20px;
-}
 
-.subtitle {
-    font-family: "Nokora", monospace;
-    font-size: 16px;
-    color: #888680;
-    max-width: 700px;
-    margin: auto;
-    line-height: 1.6;
-}
 
 
 .hero-button:hover{
@@ -107,13 +94,10 @@ button:hover {
 
 body{
     background:
-    radial-gradient(circle at bottom,#272747,#181820 45%,#111116 100%);
+    radial-gradient(circle at bottom,#1e1e38,#7b7b9e 45%,#111116 100%);
 }
 
-.title{
-    text-shadow:
-        0 0 20px rgba(229, 208, 134, 0.08);
-}
+
 
 nav{
     display:flex;
@@ -135,17 +119,8 @@ nav{
     padding-bottom: 60px;
 }
 
-.subtitle{
-    margin-top:18px;
-    margin-bottom:42px;
-}
 
-.title{
-    font-family:"Marcellus",serif;
-    font-size:64px;
-    font-weight:400;
-    line-height:1.1;
-}
+
 
 button:hover{
     background:#42486a;
@@ -210,25 +185,12 @@ body{
   transform: translateY(-3px);
 }
 
-.instrument {
-  text-align: center;
-  padding: 40px 20px 80px;
-}
 
 .instrument-image {
-  width: 600px;
-  max-width: 90%;
+  width: 1000px;
+  max-width: 1000%;
   height: auto;
-
-  margin-top: 100px;
-}
-
-.instrument-image{
-    width: 500px;
-    max-width: 80%;
-    height: auto;
-
-    margin-top: 50px;
+  margin-top: 10px;
 }
 
 .instrument{
@@ -236,25 +198,26 @@ body{
     padding: 40px 20px 100px;
 }
 
-.instrument-title{
-    font-family: "Marcellus", serif;
-    font-size: 64px;
-    margin-bottom: 25px;
+.instrument-title {
+  font-family: "Marcellus", serif;
+  font-size: 64px;
+  margin-bottom: 25px;
+  color: #f3f3f3 !important;
 }
 
-.instrument-description{
-    max-width: 700px;
-    margin: 0 auto;
+.instrument-description {
+  max-width: 700px;
+  margin: 0 auto;
 
-    font-family: "Source Code Pro", monospace;
-    color: #a8a8a8;
+  font-family: "Source Code Pro", monospace;
+  font-size: 18px;
+  line-height: 1.8;
 
-    line-height: 1.8;
-    font-size: 18px;
+  color: #a8a8a8 !important;
 }
 
 .instrument-image{
-    width:280px;
+    width:430px;
     transition:0.35s ease;
     filter: drop-shadow(0 20px 35px rgba(85, 82, 82, 0.127));
 }
@@ -268,7 +231,7 @@ body{
 
 
 .info-card{
-    width: 450px;
+    width: 600px;
     margin: 45px auto;
 
     padding: 28px 40px;
@@ -300,7 +263,7 @@ body{
 }
 .info-card p{
 
-    font-family: "Source Code Pro", monospace;
+    font-family: "Ariel", monospace;
 
     font-size: 15px;
 
@@ -319,9 +282,9 @@ body{
 
     text-align: left;
 
-    color: #adadad;
+    color: #c4bcbc;
 
-    line-height: 2;
+    line-height: 1.3;
 
     font-family: "Source Code Pro", monospace;
 
@@ -351,4 +314,77 @@ body{
         transform:translateY(0);
     }
 
+}
+
+.home-page .title {
+  color: #f3f4f6;
+}
+
+.home-page .subtitle {
+  color: #a8a8a8;
+}
+
+.hero.home-page .title {
+  color: #f3f4f6 !important;
+}
+
+.hero.home-page .subtitle {
+  color: #a8a8a8 !important;
+}
+
+.home-title {
+  font-family: "Marcellus", serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #f3f3f3 !important;
+  text-shadow: 0 0 20px rgba(229,208,134,.08);
+}
+
+.home-subtitle {
+  font-family: "Source Code Pro", monospace;
+  font-size: 20px;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 20px auto;
+  color: #a8a8a8 !important;
+}
+
+.title {
+  font-family: "Marcellus", serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.1;
+
+  color: #f3f3f3 !important;
+}
+.subtitle {
+  font-family: "Source Code Pro", monospace;
+  font-size: 20px;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 20px auto;
+
+  color: var(--text-h);
+}
+
+.team-member h3 {
+    color: white;
+    font-family: "Marcellus", serif;
+}
+
+.team-member p {
+    color: #b9bbc5;
+}
+
+.visualizer-title {
+  font-family: 'Marcellus', serif;
+}
+
+.visualizer-subtitle {
+  font-family: 'Source Code Pro', monospace;
+  color: white;
+}
+.page-title {
+  font-family: 'Marcellus', serif;
 }
