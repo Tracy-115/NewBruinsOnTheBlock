@@ -6,7 +6,7 @@ export default function Visualizer() {
   const [activeKey, setActiveKey] = useState(null);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8765");
+    const websocket = new WebSocket("ws://172.22.87.7:8765");
 
     socket.onopen = () => {
       console.log("Visualizer connected to WebSocket");
