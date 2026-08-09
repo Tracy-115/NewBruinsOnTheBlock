@@ -7,8 +7,10 @@ import vaporwave_bg from '../assets/vaporwave_bg.jpg';
 export default function About() {
   return (
     <div>
-      <h1>About the Creators</h1>
-      <p>Meet the team behind New Bruins On The Block.</p>
+      <h1 className="title">About the Creators</h1>
+      <p className="subtitle">
+  Meet the team behind New Bruins On The Block.
+</p>
       <h1></h1>
       <div className="team">
         <div className="team-member-card-background">

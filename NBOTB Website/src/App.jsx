@@ -10,17 +10,31 @@ import Visualizer from "./pages/Visualizer";
 function App() {
   return (
     <BrowserRouter>
-      <div className="app">
-
+      <div>
         <nav className="navbar">
-          <h2 className="logo">New Bruins On The Block</h2>
+          <h2 className="logo">New Bruins On The 
+            Block</h2>
 
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/instrument">Instrument</Link></li>
-            <li><Link to="/about">About the Creators</Link></li>
-            <li><Link to="/songs">Songs Presenting</Link></li>
-            <li><Link to="/visualizer">Visualizer</Link></li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+
+            <li>
+              <Link to="/instrument">Instrument</Link>
+            </li>
+
+            <li>
+              <Link to="/about">About the Creators</Link>
+            </li>
+
+            <li>
+              <Link to="/songs">Songs Presenting</Link>
+            </li>
+
+            <li>
+              <Link to="/visualizer">Visualizer</Link>
+            </li>
           </ul>
         </nav>
 
@@ -31,7 +45,6 @@ function App() {
           <Route path="/songs" element={<Songs />} />
           <Route path="/visualizer" element={<Visualizer />} />
         </Routes>
-
       </div>
     </BrowserRouter>
   );

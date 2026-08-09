@@ -3,7 +3,7 @@ import bear from "../assets/botb-bear.png";
 
 export default function Home() {
   return (
-    <section className="hero">
+    <section className="hero home-page">
 
       <img
         src={bear}
@@ -11,16 +11,16 @@ export default function Home() {
         className="hero-image"
       />
 
-      <h1 className="title">New Bruins On The Block</h1>
+      <h1 className="home-title">New Bruins On The Block</h1>
 
-      <p className="subtitle">
+      <p className="home-subtitle">
         The most perfect synthesizer custom built with a Raspberry Pi Pico 2,
         React, and modern electronics.
       </p>
 
-    <Link to="/instrument" className="hero-button">
-  Explore Our Instrument
-</Link>
+      <Link to="/instrument" className="hero-button">
+        Explore Our Instrument
+      </Link>
 
     </section>
   );
