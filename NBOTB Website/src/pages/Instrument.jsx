@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import shell from "../assets/cad-shell.png";
-import RealInstrument from "../assets/real-instrument.jpg";
+import RealInstrument from "../assets/real-instrument.png";
 
 export default function Instrument() {
   const [showInfo, setShowInfo] = useState(false);
