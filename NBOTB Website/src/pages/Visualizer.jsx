@@ -67,6 +67,21 @@ export default function Visualizer() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // TEMPORARY TESTING WITH COMPUTER KEYBOARD
 useEffect(() => {
   const handleKeyDown = (event) => {
@@ -75,7 +90,7 @@ useEffect(() => {
     if (keys.includes(note)) {
       setActiveKey(note);
     }
-  };
+  }
 
   const handleKeyUp = (event) => {
     const note = event.key.toUpperCase();
@@ -93,6 +108,9 @@ useEffect(() => {
     window.removeEventListener("keyup", handleKeyUp);
   };
 }, []);
+
+
+
 
 
 
