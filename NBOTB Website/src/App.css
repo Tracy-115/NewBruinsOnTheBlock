@@ -641,3 +641,40 @@ body{
       drop-shadow(0 0 180px rgba(255, 220, 120, 0.4));
   }
 }
+
+
+.performance-video {
+  width: 700px;
+  max-width: 90%;
+  margin-top: 30px;
+  border-radius: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.song-feature {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.song-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+}
+
+.performance-video {
+  display: block;
+  width: 700px;
+  max-width: 85%;
+  margin-top: 45px;
+  margin-left: auto;
+  margin-right: auto;
+}
