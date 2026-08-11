@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import shell from "../assets/cad-shell.png";
-import realInstrument from "../assets/real-instrument.jpg";
+import RealInstrument from "../assets/real-instrument.jpg";
 
 export default function Instrument() {
   const [showInfo, setShowInfo] = useState(false);
@@ -62,7 +62,7 @@ export default function Instrument() {
       )}
             <div className="real-instrument-section">
         <img
-          src={realInstrument}
+          src={RealInstrument}
           alt="Final built instrument"
           className="real-instrument-image"
         />
