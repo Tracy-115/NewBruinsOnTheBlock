@@ -3,3 +3,8 @@
 - the site originally crashed, used AI to help the site get back on track
 - used AI to help edit the look of the website, edited the AI code so its not fully AI
 - AI used to make team photo clickable and show team bios
+- using OLED display
+- switching between micropico to code.py
+- coding the frequencies, and using specific pins to code (anything that was unfamiliar to us)
+- low pass filter (because of our buzzing audio, one other solution that came up for us was to add a filter)
+- formatting the code
