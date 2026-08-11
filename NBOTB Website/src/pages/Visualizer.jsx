@@ -4,6 +4,7 @@ import Visualizer3D from "../Visualizer3D";
 export default function Visualizer() {
   const keys = ["C", "D", "E", "F", "G", "A", "B"];
   const [activeKey, setActiveKey] = useState(null);
+  const [notePulse, setNotePulse] = useState(false);
 
   const audioRef = useRef(null);
   const [musicVolume, setMusicVolume] = useState(0.25);
@@ -50,10 +51,71 @@ export default function Visualizer() {
     };
   }, []);
 
-  return (
-    <div>
-      <h1>Visualizer and Note Display</h1>
+  // Glow / flash whenever a note is received
+  useEffect(() => {
+    if (!activeKey) return;
 
+    setNotePulse(true);
+
+    const timer = setTimeout(() => {
+      setNotePulse(false);
+    }, 180);
+
+    return () => clearTimeout(timer);
+  }, [activeKey]);
+
+
+
+
+// TEMPORARY TESTING WITH COMPUTER KEYBOARD
+useEffect(() => {
+  const handleKeyDown = (event) => {
+    const note = event.key.toUpperCase();
+
+    if (keys.includes(note)) {
+      setActiveKey(note);
+    }
+  };
+
+  const handleKeyUp = (event) => {
+    const note = event.key.toUpperCase();
+
+    if (keys.includes(note)) {
+      setActiveKey(null);
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+  window.addEventListener("keyup", handleKeyUp);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+    window.removeEventListener("keyup", handleKeyUp);
+  };
+}, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  return (
+  <div
+    className={`visualizer-page ${
+      notePulse ? "visualizer-pulse" : ""
+    } ${activeKey ? `note-${activeKey.toLowerCase()}` : ""}`}
+  >
+    <h1>Visualizer and Note Display</h1>
       <p className="visualizer-subtitle">
         Play the instrument and watch the note appear below. Also use the
         cursor to rotate the instrument in 3D space. The instrument will
@@ -90,6 +152,8 @@ export default function Visualizer() {
             Background Music Volume: {Math.round(musicVolume * 100)}%
           </label>
 
+          
+
           <input
             id="musicVolume"
             type="range"
@@ -105,7 +169,13 @@ export default function Visualizer() {
       </div>
 
       {/* 3D Instrument */}
-      <Visualizer3D />
+      <div
+        className={`visualizer-stage ${
+          notePulse ? "stage-pulse" : ""
+        }`}
+      >
+        <Visualizer3D activeKey={activeKey} />
+      </div>
     </div>
   );
 }
