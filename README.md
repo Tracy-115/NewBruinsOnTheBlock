@@ -9,3 +9,6 @@
 - low pass filter (because of our buzzing audio, one other solution that came up for us was to add a filter)
 - formatting the code
 - base code on how the sound effects work (to see how we can implement effects)
+- visualizer page to work and be interactive with the physical keyboard
+- visualizer page also works with computer keys
+- added glow effects with the help of AI
