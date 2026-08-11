@@ -8,3 +8,4 @@
 - coding the frequencies, and using specific pins to code (anything that was unfamiliar to us)
 - low pass filter (because of our buzzing audio, one other solution that came up for us was to add a filter)
 - formatting the code
+- base code on how the sound effects work (to see how we can implement effects)
